@@ -11,9 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.harc.ecommersappmvvm.presentaion.components.DefaultTopBar
 import com.harc.ecommersappmvvm.presentaion.navigation.Graph
-import com.harc.ecommersappmvvm.presentaion.screens.admin.category.list.components.AdminCategoryListContent
 import com.harc.ecommersappmvvm.presentaion.screens.admin.category.list.components.GetCategories
 
 @Composable
@@ -31,8 +29,8 @@ fun AdminCategoryListScreen(navController: NavHostController) {
 
         }
     }) {paddingValues->
-        AdminCategoryListContent(paddingValues = paddingValues)
+        GetCategories(paddingValues)
 
     }
-    GetCategories()
+
 }
