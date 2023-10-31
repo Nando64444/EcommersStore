@@ -1,5 +1,6 @@
 package com.harc.ecommersappmvvm.presentaion.screens.admin.category.list
 
+
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -13,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.harc.ecommersappmvvm.presentaion.navigation.Graph
 import com.harc.ecommersappmvvm.presentaion.screens.admin.category.list.components.GetCategories
+import com.harc.ecommersappmvvm.presentaion.ui.theme.Blue50
 
 @Composable
 fun AdminCategoryListScreen(navController: NavHostController) {
@@ -26,9 +28,11 @@ fun AdminCategoryListScreen(navController: NavHostController) {
                 contentDescription = "",
                 tint = Color.Blue,
                 )
-
         }
-    }) {paddingValues->
+    },
+        backgroundColor = Blue50
+
+    ) {paddingValues->
         GetCategories(paddingValues)
 
     }

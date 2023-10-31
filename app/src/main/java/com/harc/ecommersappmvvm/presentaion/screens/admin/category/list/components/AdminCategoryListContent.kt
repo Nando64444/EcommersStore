@@ -15,10 +15,11 @@ import com.harc.ecommersappmvvm.domain.model.Category
 @Composable
 fun AdminCategoryListContent(categories: List<Category>,paddingValues: PaddingValues){
 
+
     LazyColumn(
         modifier = Modifier
             .padding(paddingValues = paddingValues)
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
        items(
            items = categories
