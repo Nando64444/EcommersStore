@@ -2,7 +2,11 @@ package com.harc.ecommersappmvvm.presentaion.screens.admin.category.list.compone
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,7 +15,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -25,67 +32,76 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.harc.ecommersappmvvm.R
 import com.harc.ecommersappmvvm.domain.model.Category
+import com.harc.ecommersappmvvm.presentaion.navigation.screen.admin.AdminCategoryScreen
+import com.harc.ecommersappmvvm.presentaion.screens.admin.category.list.AdminCategoryListViewModel
 
 @Composable
-fun AdminCategoryListItem(category: Category){
-
-    Column (Modifier
-        .padding(20.dp)
-        .background(Color.White, RoundedCornerShape(10.dp))
+fun AdminCategoryListItem(/*navController: NavHostController,*/ category: Category/*, vm: AdminCategoryListViewModel = hiltViewModel()*/) {
+    Box(
+        Modifier
+            .padding(start = 10.dp, end = 10.dp, top = 15.dp)
+            .border(2.dp, Color.Gray, RoundedCornerShape(10.dp))
+            /*.clickable {
+                navController.navigate(route = AdminCategoryScreen.ProductList.passCategory(category.toJson()))
+            }*/
     ) {
-        Row {
+        Row(
+            Modifier
+                .fillMaxWidth()
+        ) {
             AsyncImage(
                 modifier = Modifier
-                    .size(100.dp)
-                    .clip(RoundedCornerShape(10.dp)),
+                    .size(70.dp)
+                    .border(2.dp, Color.Gray, RoundedCornerShape(10.dp)),
                 model = category.image,
-                contentDescription =""
+                contentDescription = ""
             )
-            Spacer(modifier = Modifier.width(5.dp))
-            Column (
-                modifier = Modifier.weight(1f)
-            ){
+            Spacer(modifier = Modifier.width(25.dp))
+            Column(
+                Modifier.weight(1f)
+            ) {
                 Text(
                     text = category.name,
-                    color = Color.White,
-                    fontSize = 17.sp,
-                    fontWeight = FontWeight.Bold
+                    color = Color.Black,
+                    fontSize = 17.sp
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
                     text = category.description,
-                    color = Color.White,
+                    color = Color.Gray,
                     fontSize = 14.sp
                 )
-                Spacer(Modifier.width(15.dp))
-                Column (
-                    verticalArrangement = Arrangement.Center
-                ){
-                    Image(
-                        modifier = Modifier.size(25.dp),
-                        painter = painterResource(id = R.drawable.edit),
-                        contentDescription = ""
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Eliminar",
-                        tint = Color.Red,
-                        modifier = Modifier.size(25.dp)
-                    )
-                }
+            }
+            Column(
+                verticalArrangement = Arrangement.Center
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(30.dp)
+                        .padding(end = 10.dp)
+                      /*  .clickable {
+                            navController.navigate(
+                                route = AdminCategoryScreen.CategoryUpdate.passCategory(category.toJson())
+                            )
+                        }*/,
+                    painter = painterResource(id = R.drawable.edit),
+                    contentDescription = "Edit"
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Image(
+                    modifier = Modifier
+                        .size(30.dp)
+                        .padding(end = 10.dp)
+                       /* .clickable { vm.deleteCategory(category.id ?: "") }*/,
+                    painter = painterResource(id = R.drawable.trash),
+                    contentDescription = "Delete"
+                )
             }
         }
-        Spacer(modifier = Modifier.height(10.dp))
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp),
-            color = Color.Black,
-            thickness = 2.dp
-        )
     }
 }

@@ -30,7 +30,7 @@ fun AdminCategoryListScreen(navController: NavHostController) {
                 )
         }
     },
-        backgroundColor = Blue50
+        backgroundColor = Color.LightGray
 
     ) {paddingValues->
         GetCategories(paddingValues)
